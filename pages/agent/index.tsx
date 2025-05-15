@@ -65,6 +65,22 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 		setCurrentPage(searchFilter.page === undefined ? 1 : searchFilter.page);
 	}, [router]);
 
+	// LIVE SEARCH - debounced filtering
+	useEffect(() => {
+		const delayDebounce = setTimeout(() => {
+			setSearchFilter({
+				...searchFilter,
+				search: { ...searchFilter.search, text: searchText },
+				page: 1,
+			});
+		}, 500); // 500ms kutish
+
+		return () => clearTimeout(delayDebounce); // har doim tozalash
+	}, [searchText]);
+
+	useEffect(() => {
+	getAgentsRefetch({ input: searchFilter });
+}, [searchFilter]);
 	/** HANDLERS **/
 	const sortingClickHandler = (e: MouseEvent<HTMLElement>) => {
 		setAnchorEl(e.currentTarget);
@@ -138,14 +154,6 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 								placeholder={'Search for an agent'}
 								value={searchText}
 								onChange={(e: any) => setSearchText(e.target.value)}
-								onKeyDown={(event: any) => {
-									if (event.key == 'Enter') {
-										setSearchFilter({
-											...searchFilter,
-											search: { ...searchFilter.search, text: searchText },
-										});
-									}
-								}}
 							/>
 						</Box>
 						<Box component={'div'} className={'right'}>

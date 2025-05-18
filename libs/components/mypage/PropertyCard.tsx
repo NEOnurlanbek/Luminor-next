@@ -99,7 +99,7 @@ export const PropertyCard = (props: PropertyCardProps) => {
 						}}
 					>
 						{property.propertyStatus === 'ACTIVE' && (
-							<>
+							<div>
 								<MenuItem
 									disableRipple
 									onClick={() => {
@@ -109,7 +109,7 @@ export const PropertyCard = (props: PropertyCardProps) => {
 								>
 									Sold
 								</MenuItem>
-							</>
+							</div>
 						)}
 					</Menu>
 				)}
@@ -117,7 +117,7 @@ export const PropertyCard = (props: PropertyCardProps) => {
 				<Stack className="views-box">
 					<Typography className="views">{property.propertyViews.toLocaleString()}</Typography>
 				</Stack>
-				{!memberPage && (
+				{!memberPage && property.propertyStatus === PropertyStatus.ACTIVE && (
 					<Stack className="action-box">
 						<IconButton className="icon-button" onClick={() => pushEditProperty(property._id)}>
 							<ModeIcon className="buttons" />

@@ -9,6 +9,7 @@ import { appWithTranslation } from 'next-i18next';
 import '../scss/app.scss';
 import '../scss/pc/main.scss';
 import '../scss/mobile/main.scss';
+import '../libs/components/common/styles.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
 	// @ts-ignore

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Stack, Box } from '@mui/material';
+import { Stack, Box, Button } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import WestIcon from '@mui/icons-material/West';
 import EastIcon from '@mui/icons-material/East';
@@ -25,7 +25,6 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 	const [trendProperties, setTrendProperties] = useState<Property[]>([]);
 
 	/** APOLLO REQUESTS **/
-
 	const [likeTargetProperty] = useMutation(LIKE_TARGET_PROPERTY);
 
 	const {
@@ -42,23 +41,20 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 		},
 	});
 	/** HANDLERS **/
-
 	const likePropertyHandler = async (user: T, id: string) => {
 		try {
 			if (!id) return;
 			if (!user._id) throw new Error(Message.NOT_AUTHENTICATED);
-			await likeTargetProperty({
-				variables: { input: id },
-			});
+			await likeTargetProperty({ variables: { input: id } });
 			await getPropertiesRefetch({ input: initialInput });
 			await sweetTopSmallSuccessAlert('success', 800);
 		} catch (err: any) {
-			console.log('Error message', err.message);
-			sweetMixinErrorAlert(err.message).then;
+			console.log('ERROR, likePropertyHandler:', err.message);
+			sweetMixinErrorAlert(err.message).then();
 		}
 	};
 
-	if (trendProperties) console.log
+	if (trendProperties) console.log('trendProperties:', trendProperties);
 	if (!trendProperties) return null;
 
 	if (device === 'mobile') {
@@ -84,7 +80,7 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 								{trendProperties.map((property: Property) => {
 									return (
 										<SwiperSlide key={property._id} className={'trend-property-slide'}>
-											{/* <TrendPropertyCard property={property} /> */}
+											<TrendPropertyCard property={property} likePropertyHandler={likePropertyHandler} />
 										</SwiperSlide>
 									);
 								})}
@@ -100,14 +96,8 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
 						<Box component={'div'} className={'left'}>
+							<p>Featured Properties</p>
 							<span>Find Your Dream Home</span>
-						</Box>
-						<Box component={'div'} className={'right'}>
-							<div className={'pagination-box'}>
-								<WestIcon className={'swiper-trend-prev'} />
-								<div className={'swiper-trend-pagination'}></div>
-								<EastIcon className={'swiper-trend-next'} />
-							</div>
 						</Box>
 					</Stack>
 					<Stack className={'card-box'}>
@@ -116,29 +106,18 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 								Trends Empty
 							</Box>
 						) : (
-							<Swiper
-								className={'trend-property-swiper'}
-								slidesPerView={'auto'}
-								spaceBetween={15}
-								modules={[Autoplay, Navigation, Pagination]}
-								navigation={{
-									nextEl: '.swiper-trend-next',
-									prevEl: '.swiper-trend-prev',
-								}}
-								pagination={{
-									el: '.swiper-trend-pagination',
-								}}
-							>
-								{trendProperties.map((property: Property) => {
-									return (
-										<SwiperSlide key={property._id} className={'trend-property-slide'}>
-											<TrendPropertyCard property={property} likePropertyHandler={likePropertyHandler} />
-										</SwiperSlide>
-									);
-								})}
-							</Swiper>
+							<Box component={'div'} className={'grid-box'}>
+								{trendProperties.map((property: Property) => (
+									<TrendPropertyCard key={property._id} property={property} likePropertyHandler={likePropertyHandler} />
+								))}
+							</Box>
 						)}
 					</Stack>
+					<Box component={'div'} className={'view-all'}>
+						<Button className="about-button" variant="contained">
+						View Properties
+					</Button>
+					</Box>
 				</Stack>
 			</Stack>
 		);
@@ -148,7 +127,7 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 TrendProperties.defaultProps = {
 	initialInput: {
 		page: 1,
-		limit: 8,
+		limit: 6,
 		sort: 'propertyLikes',
 		direction: 'DESC',
 		search: {},

@@ -119,7 +119,6 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: flex-start;
-			gap: 40px;
 
 			.about-left {
 				flex: 1;
@@ -188,24 +187,23 @@
 			padding-bottom: 10px;
 			.container {
 				flex-direction: column;
-				.info-box{
-					display:flex;
+				.info-box {
+					display: flex;
 					flex-direction: column;
 					align-items: center;
 					justify-content: center;
-					p{
+					p {
 						position: relative;
 						margin-left: 100px;
 						width: 181px;
 						height: 20px;
-						color: #A4AEB5;
+						color: #a4aeb5;
 					}
-					span{
-						
+					span {
 						width: 468px;
 						height: 52px;
 						font-weight: 600px;
-						
+
 						color: #111111;
 					}
 				}
@@ -357,46 +355,156 @@
 					}
 				}
 				.view-all {
-					display:flex;
+					display: flex;
 					justify-content: center;
 					align-items: center;
 					height: 50px;
 					width: 100%;
 					.about-button {
-					background-color: #000;
-					color: white;
-					padding: 10px 24px;
-					border-radius: 4px;
-					text-transform: none;
+						background-color: #000;
+						color: white;
+						padding: 10px 24px;
+						border-radius: 4px;
+						text-transform: none;
 
-					&:hover {
-						background-color: #333;
+						&:hover {
+							background-color: #333;
+						}
 					}
-				}
-					
 				}
 			}
 		}
 		.popular-properties {
-			padding: 132px 0px 94px;
+			padding: 30px 0px 5px;
 			width: 100%;
-			height: 816px;
+			height: 1012px;
 			display: flex;
 			flex-direction: row;
-			background: #f6f6f6;
+			background: #111111;
 			.container {
 				flex-direction: column;
 				align-items: center;
-				.card-box {
-					margin-top: 34px;
+				.info-box {
 					width: 100%;
-					height: auto;
+					display: flex;
+					justify-content: center;
+					.left {
+						display: flex;
+						flex-direction: column;
+						span {
+							color: #ffffff;
+							font-family: $font;
+							font-size: 34px;
+							font-style: normal;
+							font-weight: 500;
+							line-height: 150%;
+							letter-spacing: -0.646px;
+							text-transform: capitalize;
+							&.white {
+								color: #ffffff;
+							}
+						}
+						p {
+							position: relative;
+							padding-left: 50PX;
+							color: #ffffff;
+							font-family: $font;
+							font-size: 14px;
+							font-style: normal;
+							font-weight: 400;
+							line-height: 26px;
+							&.white {
+								color: #ffffff;
+							}
+						}
+					}
+					.right {
+						display: flex;
+						flex-direction: row;
+						align-items: flex-end;
+						.pagination-box {
+							display: flex;
+							flex-direction: row;
+							align-items: center;
+							.swiper-pagination-bullet.swiper-pagination-bullet-active {
+								background: #000000;
+							}
+							.swiper-trend-next {
+								margin-left: 20px;
+								cursor: pointer;
+							}
+							.swiper-trend-prev {
+								margin-right: 20px;
+								cursor: pointer;
+							}
+							.swiper-top-next {
+								margin-left: 20px;
+								cursor: pointer;
+							}
+							.swiper-top-prev {
+								margin-right: 20px;
+								cursor: pointer;
+							}
+						}
+						.more-box {
+							display: flex;
+							flex-direction: row;
+							cursor: pointer;
+							align-items: center;
+							span {
+								color: #ffffff;
+								font-family: $font;
+								font-size: 15px;
+								font-style: normal;
+								font-weight: 600;
+								line-height: normal;
+								text-transform: capitalize;
+							}
+							img {
+								
+								margin-left: 10px;
+								width: 16px;
+								height: 16px;
+							}
+						}
+						.btn-box {
+							display: flex;
+							flex-direction: row;
+							button {
+								border-radius: 6px;
+								background: rgba(255, 255, 255, 0.07);
+								color: #ffffff;
+								font-family: $font;
+								font-size: 14px;
+								font-style: normal;
+								font-weight: 500;
+								line-height: 28px;
+								text-transform: capitalize;
+								&:first-child {
+									margin-right: 20px;
+								}
+								&.active {
+									border: 1px solid #181a20;
+									background: #fff;
+									color: #ffffff;
+									font-family: $font;
+									font-size: 14px;
+									font-style: normal;
+									font-weight: 500;
+									line-height: 28px;
+								}
+							}
+						}
+					}
+				}
+				.card-box {
+					width: 100%;
+					height: 612px;
 					display: flex;
 					flex-direction: row;
 					justify-content: space-between;
 					.popular-property-swiper {
 						width: 100%;
-						height: 425px;
 						display: flex;
 						flex-direction: row;
 						.popular-property-slide {
@@ -409,7 +517,7 @@
 					.popular-card-box {
 						position: relative;
 						width: 400px;
-						height: 425px;
+						height: 500px;
 						display: flex;
 						flex-direction: column;
 						transition: transform 0.3s, opacity 0.3s;
@@ -420,9 +528,9 @@
 						.card-img {
 							position: relative;
 							width: 100%;
-							height: 203px;
+							height: 427px;
 							background-size: cover;
-							border-radius: 12px 12px 0px 0px;
+							border-radius: 12px 12px 12px 12px;
 							cursor: pointer;
 							div.status {
 								position: absolute;
@@ -566,13 +674,15 @@
 					justify-content: center;
 					align-items: center;
 					.swiper-pagination-bullet.swiper-pagination-bullet-active {
-						background: #000000;
+						background: #ffffff;
 					}
 					.swiper-popular-next {
+						color: #ffffff;
 						margin-left: 20px;
 						cursor: pointer;
 					}
 					.swiper-popular-prev {
+						color: #ffffff;
 						margin-right: 20px;
 						cursor: pointer;
 					}

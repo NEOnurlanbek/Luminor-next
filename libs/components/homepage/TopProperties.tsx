@@ -12,7 +12,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { GET_PROPERTIES } from '../../../apollo/user/query';
 import { T } from '../../types/common';
 import { LIKE_TARGET_PROPERTY } from '../../../apollo/user/mutation';
-
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../sweetAlert';
 import { Message } from '../../enums/common.enum';
 
@@ -44,7 +44,6 @@ const TopProperties = (props: TopPropertiesProps) => {
 	});
 	/** HANDLERS **/
 
-	
 	const likePropertyHandler = async (user: T, id: string) => {
 		try {
 			if (!id) return;
@@ -91,23 +90,17 @@ const TopProperties = (props: TopPropertiesProps) => {
 		return (
 			<Stack className={'top-properties'}>
 				<Stack className={'container'}>
-					<Stack className={'info-box'}>
-						<Box component={'div'} className={'left'}>
-							<span>Top properties</span>
-							<p>Check out our Top Properties</p>
-						</Box>
-						<Box component={'div'} className={'right'}>
-							<div className={'pagination-box'}>
-								<WestIcon className={'swiper-top-prev'} />
-								<div className={'swiper-top-pagination'}></div>
-								<EastIcon className={'swiper-top-next'} />
-							</div>
-						</Box>
-					</Stack>
+					<Box className={'info-boxx'}>
+						<p>Check out our Top Properties</p>
+						<span>Top properties</span>
+					</Box>
 					<Stack className={'card-box'}>
+						<Box component={'div'} className={'switch-btn swiper-top-prev'}>
+							<ArrowBackIosNewIcon />
+						</Box>
 						<Swiper
 							className={'top-property-swiper'}
-							slidesPerView={'auto'}
+							slidesPerView={1}
 							spaceBetween={15}
 							modules={[Autoplay, Navigation, Pagination]}
 							navigation={{
@@ -121,11 +114,14 @@ const TopProperties = (props: TopPropertiesProps) => {
 							{topProperties.map((property: Property) => {
 								return (
 									<SwiperSlide className={'top-property-slide'} key={property?._id}>
-										<TopPropertyCard property={property} likePropertyHandler={likePropertyHandler}/>
+										<TopPropertyCard property={property} likePropertyHandler={likePropertyHandler} />
 									</SwiperSlide>
 								);
 							})}
 						</Swiper>
+						<Box component={'div'} className={'switch-btn swiper-top-next'}>
+							<ArrowBackIosNewIcon />
+						</Box>
 					</Stack>
 				</Stack>
 			</Stack>
@@ -136,7 +132,7 @@ const TopProperties = (props: TopPropertiesProps) => {
 TopProperties.defaultProps = {
 	initialInput: {
 		page: 1,
-		limit: 4,
+		limit: 100,
 		sort: 'propertyRank',
 		direction: 'DESC',
 		search: {},
@@ -144,7 +140,6 @@ TopProperties.defaultProps = {
 };
 
 export default TopProperties;
-function getPropertiesRefetch(arg0: { input: PropertiesInquiry; }) {
+function getPropertiesRefetch(arg0: { input: PropertiesInquiry }) {
 	throw new Error('Function not implemented.');
 }
-

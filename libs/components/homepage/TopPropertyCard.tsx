@@ -1,14 +1,14 @@
 import React from 'react';
-import { Stack, Box, Divider, Typography } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
+import { Stack, Box } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Property } from '../../types/property/property';
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { REACT_APP_API_URL } from '../../config';
 import { useRouter } from 'next/router';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
+import BedIcon from '@mui/icons-material/KingBed';
+import BathtubIcon from '@mui/icons-material/Bathtub';
+import SquareFootIcon from '@mui/icons-material/SquareFoot';
 
 interface TopPropertyCardProps {
 	property: Property;
@@ -22,119 +22,103 @@ const TopPropertyCard = (props: TopPropertyCardProps) => {
 	const user = useReactiveVar(userVar);
 
 	/** HANDLERS **/
-
 	const pushDetailHandler = async (propertyId: string) => {
-		console.log("propertyId", propertyId);
-		await router.push({ pathname: '/property/detail', query: {id: propertyId}});
-	}
+		await router.push({ pathname: '/property/detail', query: { id: propertyId } });
+	};
 
-	if (device === 'mobile') {
-		return (
-			<Stack className="top-card-box">
-				<Box
-					component={'div'}
-					className={'card-img'}
-					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${property?.propertyImages[0]})` }}
-					onClick={() => {pushDetailHandler(property._id)}}
-				>
-					<div>${property?.propertyPrice}</div>
+	return (
+		<Stack className="top-card-box">
+			{/* Left: Info Panel */}
+			<Box component={'div'} className={'info-panel'}>
+				<Box component={'div'} className={'property-title'}>
+					<strong onClick={() => pushDetailHandler(property._id)}>
+						{property?.propertyTitle}
+					</strong>
+					<p className={'address'}>{property?.propertyAddress}</p>
 				</Box>
-				<Box component={'div'} className={'info'}>
-					<strong className={'title'}onClick={() => {pushDetailHandler(property._id)}}>{property?.propertyTitle}</strong>
-					<p className={'desc'}>{property?.propertyAddress}</p>
-					<div className={'options'}>
-						<div>
-							<img src="/img/icons/bed.svg" alt="" />
-							<span>{property?.propertyBeds} bed</span>
-						</div>
-						<div>
-							<img src="/img/icons/room.svg" alt="" />
-							<span>{property?.propertyRooms} rooms</span>
-						</div>
-						<div>
-							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property?.propertySquare} m2</span>
-						</div>
+
+				{/* Stats */}
+				<Box component={'div'} className={'stats'}>
+					<div className={'stat-item'}>
+						<BedIcon />
+						<span>{property?.propertyBeds} Beth</span>
 					</div>
-					<Divider sx={{ mt: '15px', mb: '17px' }} />
-					<div className={'bott'}>
-						<p>
-							{' '}
-							{property.propertyRent ? 'Rent' : ''} {property.propertyRent && property.propertyBarter && '/'}{' '}
-							{property.propertyBarter ? 'Barter' : ''}
-						</p>
-						<div className="view-like-box">
-							<IconButton color={'default'}>
-								<RemoveRedEyeIcon />
-							</IconButton>
-							<Typography className="view-cnt">{property?.propertyViews}</Typography>
-							<IconButton color={'default'}>
-								{property?.meLiked && property?.meLiked[0]?.myFavorite ? (
-									<FavoriteIcon style={{ color: 'red' }} />
-								) : (
-									<FavoriteIcon />
-								)}
-							</IconButton>
-							<Typography className="view-cnt">{property?.propertyLikes}</Typography>
-						</div>
+					<div className={'stat-item'}>
+						<BathtubIcon />
+						<span>{property?.propertyBeds} Bath</span>
+					</div>
+					<div className={'stat-item'}>
+						<SquareFootIcon />
+						<span>{property?.propertySquare?.toLocaleString()} sqft</span>
 					</div>
 				</Box>
-			</Stack>
-		);
-	} else {
-		return (
-			<Stack className="top-card-box">
-				<Box
-					component={'div'}
-					className={'card-img'}
-					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${property?.propertyImages[0]})` }}
-					onClick={() => {pushDetailHandler(property._id)}}
-				>
-					<div>${property?.propertyPrice}</div>
+
+				{/* Description */}
+				<p className={'description'}>
+					{property?.propertyDesc}
+				</p>
+
+				{/* Agent + Price */}
+				<Box component={'div'} className={'agent-price'}>
+					<Box component={'div'} className={'agent'}>
+						<Box component={'div'} className={'agent-avatar'}>
+							{property?.memberData?.memberImage ? (
+								<img
+									src={`${REACT_APP_API_URL}/${property?.memberData?.memberImage}`}
+									alt={property?.memberData?.memberNick}
+								/>
+							) : (
+								<div className={'avatar-placeholder'}>
+									{property?.memberData?.memberNick?.[0]?.toUpperCase() || 'A'}
+								</div>
+							)}
+						</Box>
+						<Box component={'div'} className={'agent-info'}>
+							<span className={'agent-label'}>Agent</span>
+							<strong className={'agent-name'}>
+								{property?.memberData?.memberFullName || property?.memberData?.memberNick}
+							</strong>
+						</Box>
+					</Box>
+					<Box component={'div'} className={'price'}>
+						<strong>${property?.propertyPrice?.toLocaleString()}</strong>
+						<span>/{property?.propertyRent ? 'Month' : 'SqFT'}</span>
+					</Box>
 				</Box>
-				<Box component={'div'} className={'info'}>
-					<strong className={'title'}onClick={() => {pushDetailHandler(property._id)}}>{property?.propertyTitle}</strong>
-					<p className={'desc'}>{property?.propertyAddress}</p>
-					<div className={'options'}>
-						<div>
-							<img src="/img/icons/bed.svg" alt="" />
-							<span>{property?.propertyBeds} bed</span>
-						</div>
-						<div>
-							<img src="/img/icons/room.svg" alt="" />
-							<span>{property?.propertyRooms} rooms</span>
-						</div>
-						<div>
-							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property?.propertySquare} m2</span>
-						</div>
-					</div>
-					<Divider sx={{ mt: '15px', mb: '17px' }} />
-					<div className={'bott'}>
-						<p>
-							{' '}
-							{property.propertyRent ? 'Rent' : ''} {property.propertyRent && property.propertyBarter && '/'}{' '}
-							{property.propertyBarter ? 'Barter' : ''}
-						</p>
-						<div className="view-like-box">
-							<IconButton color={'default'}>
-								<RemoveRedEyeIcon />
-							</IconButton>
-							<Typography className="view-cnt">{property?.propertyViews}</Typography>
-							<IconButton color={'default'} onClick={() => likePropertyHandler(user, property?._id)}>
-								{property?.meLiked && property?.meLiked[0]?.myFavorite ? (
-									<FavoriteIcon style={{ color: 'red' }} />
-								) : (
-									<FavoriteIcon />
-								)}
-							</IconButton>
-							<Typography className="view-cnt">{property?.propertyLikes}</Typography>
-						</div>
-					</div>
+
+				{/* Buttons */}
+				<Box component={'div'} className={'action-buttons'}>
+					<button
+						className={'quick-view-btn'}
+						onClick={() => pushDetailHandler(property._id)}
+					>
+						Quick View
+					</button>
+					<button className={'compare-btn'}>
+						Compare
+					</button>
 				</Box>
-			</Stack>
-		);
-	}
+			</Box>
+
+			{/* Right: Image Panel */}
+			<Box
+				component={'div'}
+				className={'image-panel'}
+				style={{
+					backgroundImage: `url(${REACT_APP_API_URL}/${property?.propertyImages?.[0]})`,
+				}}
+				onClick={() => pushDetailHandler(property._id)}
+			>
+				{/* Badges */}
+				<Box component={'div'} className={'badges'}>
+					<span className={`type-badge ${property?.propertyRent ? 'rent' : 'sale'}`}>
+						{property?.propertyRent ? 'For Rent' : 'For Sale'}
+					</span>
+					<span className={'category-badge'}>{property?.propertyType}</span>
+				</Box>
+			</Box>
+		</Stack>
+	);
 };
 
 export default TopPropertyCard;

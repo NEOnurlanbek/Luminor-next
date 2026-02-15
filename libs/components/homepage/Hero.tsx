@@ -2,6 +2,7 @@ import React from 'react';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import router from 'next/router';
+import Link from 'next/link';
 
 const Hero = () => {
 	const device = useDeviceDetect();
@@ -9,8 +10,7 @@ const Hero = () => {
 		return <Stack></Stack>;
 	} else {
 		return (
-			<Stack className='container' direction="row" justifyContent="space-between">
-                
+			<Stack className="container" direction="row" justifyContent="space-between">
 				<Stack className="about-left" spacing={2}>
 					<Typography className="about-label">ABOUT US</Typography>
 					<Typography className="about-title">Building Dreams, One Home At A Time</Typography>
@@ -18,9 +18,9 @@ const Hero = () => {
 						Our mission goes beyond real estate — it’s about guiding you through one of life’s biggest milestones with
 						heart, expertise, and unwavering commitment.
 					</Typography>
-					<Button className="about-button" variant="contained">
-						View Properties
-					</Button>
+					<Link href={'/property'} className="about-button">
+						<span>View Properties</span>
+					</Link>
 				</Stack>
 
 				<Stack className="about-right" spacing={2}>

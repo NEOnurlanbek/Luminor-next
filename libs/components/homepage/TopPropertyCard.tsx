@@ -9,6 +9,7 @@ import { userVar } from '../../../apollo/store';
 import BedIcon from '@mui/icons-material/KingBed';
 import BathtubIcon from '@mui/icons-material/Bathtub';
 import SquareFootIcon from '@mui/icons-material/SquareFoot';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 
 interface TopPropertyCardProps {
 	property: Property;
@@ -41,15 +42,15 @@ const TopPropertyCard = (props: TopPropertyCardProps) => {
 				<Box component={'div'} className={'stats'}>
 					<div className={'stat-item'}>
 						<BedIcon />
-						<span>{property?.propertyBeds} Beth</span>
+						<span>{property?.propertyBeds} Bed</span>
 					</div>
 					<div className={'stat-item'}>
-						<BathtubIcon />
-						<span>{property?.propertyBeds} Bath</span>
+						<MeetingRoomIcon />
+						<span>{property?.propertyRooms} Rooms</span>
 					</div>
 					<div className={'stat-item'}>
 						<SquareFootIcon />
-						<span>{property?.propertySquare?.toLocaleString()} sqft</span>
+						<span>{property?.propertySquare?.toLocaleString()} m2</span>
 					</div>
 				</Box>
 
@@ -82,7 +83,7 @@ const TopPropertyCard = (props: TopPropertyCardProps) => {
 					</Box>
 					<Box component={'div'} className={'price'}>
 						<strong>${property?.propertyPrice?.toLocaleString()}</strong>
-						<span>/{property?.propertyRent ? 'Month' : 'SqFT'}</span>
+						<span>{property?.propertyRent }</span>
 					</Box>
 				</Box>
 

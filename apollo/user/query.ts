@@ -88,7 +88,7 @@ query GetMember($input: String!) {
 
 export const GET_PROPERTY = gql`
 	query GetProperty($input: String!) {
-		getProperty(propertyId: $input) {
+		getProperty(input: $input) {
 			_id
 			propertyType
 			propertyStatus
@@ -101,6 +101,8 @@ export const GET_PROPERTY = gql`
 			propertyRooms
 			propertyViews
 			propertyLikes
+			propertyComments
+			propertyRank
 			propertyImages
 			propertyDesc
 			propertyBarter
@@ -109,8 +111,8 @@ export const GET_PROPERTY = gql`
 			soldAt
 			deletedAt
 			constructedAt
-			createdAt
 			updatedAt
+			createdAt
 			memberData {
 				_id
 				memberType
@@ -122,11 +124,17 @@ export const GET_PROPERTY = gql`
 				memberImage
 				memberAddress
 				memberDesc
-				memberWarnings
-				memberBlocks
+				memberProperties
+				memberArticles
+				memberFollowers
+				memberFollowings
 				memberPoints
 				memberLikes
+				memberComments
 				memberViews
+				memberRank
+				memberWarnings
+				memberBlocks
 				deletedAt
 				createdAt
 				updatedAt

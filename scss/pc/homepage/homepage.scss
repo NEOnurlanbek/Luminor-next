@@ -738,7 +738,7 @@
 						align-items: center;
 						justify-content: center;
 						border-radius: 50%;
-						background: #E4E4E4;
+						background: #e4e4e4;
 						filter: drop-shadow(0px 10px 35px rgba(5, 16, 54, 0.1));
 						cursor: pointer;
 						svg {
@@ -746,7 +746,7 @@
 							height: 14px;
 						}
 						&.swiper-top-next {
-							background: #E4E4E4;
+							background: #e4e4e4;
 							transform: rotate(180deg);
 						}
 					}
@@ -780,7 +780,7 @@
 							flex-direction: column;
 							justify-content: space-between;
 							border-right: 1px solid #f0f0f0;
-							background: #F8F7F3;
+							background: #f8f7f3;
 
 							.property-title {
 								strong {
@@ -1102,86 +1102,94 @@
 		}
 		.events {
 			position: relative;
-			padding: 100px 0px 92px;
 			width: 100%;
-			height: 810px;
+			height: 610px;
 			display: flex;
 			flex-direction: row;
-			background: #181a20;
+			justify-content: center; // gorizontal markazga
+			background-image: url('/img/property/bigImage.png');
+			background-size: cover; // rasmni to'ldiradi
+			background-position: center; // markazdan
+			background-repeat: no-repeat; // takrorlanmasin
+
 			.container {
-				flex-direction: column;
-				align-items: center;
+				display: flex;
+				justify-content: center; // markazga
+
 				.card-wrapper {
-					position: relative;
-					margin-top: 48px;
-					width: 100%;
-					height: auto;
+					width: 670px; // rasmda kichik karta
+					height: 514px;
 					display: flex;
-					flex-direction: row;
-					justify-content: space-between;
-					.event-card {
-						position: relative;
-						width: 300px;
-						height: 420px;
-						border-radius: 12px;
-						opacity: 0.9;
-						cursor: pointer;
-						transition: opacity 0.4s;
-						&:hover {
-							opacity: 1;
-							scale: 1.05;
-							transition: 0.3s;
-							.more {
-								opacity: 1;
-							}
+					flex-direction: column;
+					gap: 28px;
+					background: #ffffff;
+					border-radius: 16px; // burchaklar yumaloq
+					padding: 40px 48px; // ichki bo'sh joy
+					box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+					margin-bottom: 30px;
+
+					.info-box {
+						width: 100%;
+						display: flex;
+						flex-direction: column;
+						align-items: flex-start;
+						margin-bottom: 8px;
+
+						.label {
+							font-size: 11px;
+							font-weight: 600;
+							color: #8a9a7a;
+							letter-spacing: 0.5px;
+							text-transform: uppercase;
+							font-family: $font;
+							margin-bottom: 8px;
 						}
-						.info {
-							position: absolute;
+
+						span {
+							padding-top: 30px;
+							font-size: 35px;
+							font-weight: 550;
+							color: #111;
+							font-family: $font;
+						}
+					}
+
+					.step-card {
+						display: flex;
+						flex-direction: row;
+						align-items: flex-start;
+						gap: 16px;
+
+						.step-number {
+							font-size: 15px;
+							font-weight: 600;
+							color: #333;
+							font-family: $font;
+							min-width: 28px;
+							padding-top: 2px;
+						}
+
+						.step-content {
 							display: flex;
 							flex-direction: column;
-							top: 35px;
-							left: 10px;
-							right: 10px;
+							gap: 5px;
+
 							strong {
-								color: #f64747;
+								font-size: 15px;
+								font-weight: 700;
+								color: #111;
 								font-family: $font;
-								font-size: 25px;
-								font-style: normal;
-								font-weight: 600;
-								line-height: normal;
-								text-transform: capitalize;
+								line-height: 1.4;
 							}
-							span {
-								color: #f66767;
-								font-family: $font;
-								font-size: 20px;
-								font-style: normal;
-								font-weight: 500;
-								line-height: 28px;
-								text-transform: capitalize;
-							}
-						}
-						.more {
-							position: absolute;
-							left: 10px;
-							right: 10px;
-							bottom: 41px;
-							display: flex;
-							flex-direction: row;
-							align-items: center;
-							opacity: 0;
-							span {
-								padding: 0px 5px;
-								border-radius: 5px;
-								background: #fffdfdc4;
-								color: #9c67f6;
-								font-family: $font;
-								font-size: 16px;
-								font-style: normal;
+
+							p {
+								font-size: 12.5px;
 								font-weight: 400;
-								line-height: 26px;
-								text-align: justify;
-								cursor: pointer;
+								color: #888;
+								font-family: $font;
+								line-height: 1.6;
+								margin: 0;
+								max-width: 280px; // rasmda qisqa text
 							}
 						}
 					}

@@ -14,6 +14,7 @@ import { T } from '../../types/common';
 import { LIKE_TARGET_PROPERTY } from '../../../apollo/user/mutation';
 import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../sweetAlert';
 import { Message } from '../../enums/common.enum';
+import Link from 'next/link';
 
 interface TrendPropertiesProps {
 	initialInput: PropertiesInquiry;
@@ -114,9 +115,9 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 						)}
 					</Stack>
 					<Box component={'div'} className={'view-all'}>
-						<Button className="about-button" variant="contained">
-						View Properties
-					</Button>
+						<Link href={'/property'} className='about-button'>
+							<span>View Properties</span>
+						</Link>
 					</Box>
 				</Stack>
 			</Stack>

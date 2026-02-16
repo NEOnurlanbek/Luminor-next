@@ -37,7 +37,6 @@ const Home: NextPage = () => {
 				<Hero/>
 				<TrendProperties />
 				<PopularProperties />
-				{/* <Advertisement /> */}
 				<TopProperties />
 				<TopAgents />
 				<Events />

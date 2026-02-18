@@ -1,0 +1,23 @@
+services:
+  luminor-next:
+    container_name: luminor-next
+    restart: always
+    image: node:20.10.0
+    ports:
+      - 4011:3000
+    environment:
+      - PORT=3000
+    volumes:
+      - ./:/usr/src/luminor-next
+    working_dir: /usr/src/luminor-next
+
+    networks:
+      - client-network
+
+    # FOR PRODUCTION
+    command: bash -c "yarn && yarn run build && yarn run start"
+
+networks:
+  client-network:
+    driver: bridge
+# luminor-next:   localhost:4011 <=> container:3000

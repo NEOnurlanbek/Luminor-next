@@ -18,11 +18,14 @@ export const UPDATE_MEMBER_BY_ADMIN = gql`
 			memberAddress
 			memberDesc
 			memberProperties
-			memberRank
 			memberArticles
+			memberFollowers
+			memberFollowings
 			memberPoints
 			memberLikes
+			memberComments
 			memberViews
+			memberRank
 			memberWarnings
 			memberBlocks
 			deletedAt

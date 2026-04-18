@@ -31,22 +31,22 @@ const withLayoutBasic = (Component: any) => {
 				case '/property':
 					title = 'Property Search';
 					desc = 'We are glad to see you again!';
-					bgImage = '/img/banner/properties.png';
+					bgImage = '/img/banner/properties-navbar.webp';
 					break;
 				case '/agent':
 					title = 'Agents';
 					desc = 'Home / For Rent';
-					bgImage = '/img/banner/agents.webp';
+					bgImage = '/img/banner/skyscrapers-distance.jpg';
 					break;
 				case '/agent/detail':
 					title = 'Agent Page';
 					desc = 'Home / For Rent';
-					bgImage = '/img/banner/header2.svg';
+					bgImage = '/img/banner/tim-stief-dH6IjhWHNQQ-unsplash.jpg';
 					break;
 				case '/mypage':
 					title = 'my page';
 					desc = 'Home / For Rent';
-					bgImage = '/img/banner/header1.svg';
+					bgImage = '/img/banner/tim-stief-dH6IjhWHNQQ-unsplash.jpg';
 					break;
 				case '/community':
 					title = 'Community';
@@ -61,7 +61,7 @@ const withLayoutBasic = (Component: any) => {
 				case '/cs':
 					title = 'CS';
 					desc = 'We are glad to see you again!';
-					bgImage = '/img/banner/header2.svg';
+					bgImage = '/img/banner/jimmy-chang-ACt8ycSzpdE-unsplash.jpg';
 					break;
 				case '/account/join':
 					title = 'Login/Signup';
@@ -128,6 +128,10 @@ const withLayoutBasic = (Component: any) => {
 							style={{
 								backgroundImage: `url(${memoizedValues.bgImage})`,
 								backgroundSize: 'cover',
+								
+									backgroundPosition: 'center center',
+									backgroundRepeat: 'no-repeat',
+								
 								boxShadow: 'inset 10px 40px 150px 40px rgb(24 22 36)',
 							}}
 						>

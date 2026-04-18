@@ -24,21 +24,9 @@
 						flex-direction: row;
 						gap: 11px;
 						img {
-							width: 80px;
-							height: 80px;
-							border-radius: 50%;
+							width: 100%;
+							height: 100%;
 							object-fit: cover;
-						}
-						.community-name {
-							.name {
-								margin-top: 15px;
-								color: #181a20;
-								font-family: $font;
-								font-size: 15px;
-								font-style: normal;
-								font-weight: 600;
-								line-height: normal;
-							}
 						}
 					}
 					.tab-button {

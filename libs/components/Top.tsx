@@ -193,13 +193,13 @@ const Top = () => {
 							</Link>
 
 							{user?._id && user.memberType === MemberType.ADMIN && (
-								<Box
-									style={{ backgroundColor: '#e4e95b', borderRadius: '60px', cursor: 'pointer', padding: '0px 10px' }}
-								>
-									<Link href={'/_admin/users'}>
-										<div> {t('Admin')} </div>
-									</Link>
-								</Box>
+								<Link href={'/_admin/users'}>
+									<div
+										style={{ backgroundColor: '#e4e95b', borderRadius: '60px', cursor: 'pointer', padding: '0px 10px' }}
+									>
+										{t('Admin')}
+									</div>
+								</Link>
 							)}
 						</Box>
 						<Box component={'div'} className={'user-box'}>

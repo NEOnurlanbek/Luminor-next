@@ -55,7 +55,7 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 		}
 	};
 
-	if (trendProperties) console.log('trendProperties:', trendProperties);
+
 	if (!trendProperties) return null;
 
 	if (device === 'mobile') {

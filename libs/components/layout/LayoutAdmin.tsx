@@ -40,7 +40,7 @@ const withAdminLayout = (Component: ComponentType) => {
 
 		useEffect(() => {
 			if (!loading && user.memberType !== MemberType.ADMIN) {
-				router.push('/').then();
+				router.push('/account/join').then();
 			}
 		}, [loading, user, router]);
 

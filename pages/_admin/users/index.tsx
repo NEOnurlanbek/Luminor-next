@@ -50,7 +50,6 @@ const AdminUsers: NextPage = ({ initialInquiry, ...props }: any) => {
 			setMembersTotal(data?.getAllMembersByAdmin?.metaCounter[0]?.total ?? 0);
 		},
 	});
-	console.log('users', getAllMembersByAdminData);
 	/** LIFECYCLES **/
 	useEffect(() => {
 		getAllMembersRefetch({ input: membersInquiry }).then();
